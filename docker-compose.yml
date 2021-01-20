@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.6
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=
+      - TZ=Europe/Paris
+
+  app:
+    build: ./.docker/app/
+    volumes:
+      - .:/srv
+
+  tools:
+    build: ./.docker/tools/
+    volumes:
+      - .:/srv
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: username
+      RABBITMQ_DEFAULT_PASS: password
+
+  wait:
+    image: martin/wait
+    command: -c mysql:3306,rabbitmq:5672

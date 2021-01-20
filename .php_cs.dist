@@ -1,0 +1,36 @@
+<?php
+
+$finder = PhpCsFixer\Finder::create()
+    ->in(__DIR__)
+    ->exclude(['.docker', 'bin', 'var', 'vendor'])
+;
+
+$rules = [
+    '@Symfony' => true,
+    '@Symfony:risky' => true,
+    'combine_consecutive_issets' => true,
+    'combine_consecutive_unsets' => true,
+    'logical_operators' => true,
+    'no_null_property_initialization' => true,
+    'no_php4_constructor' => true,
+    'no_useless_return' => true,
+    'ordered_imports' => true,
+    'return_assignment' => true,
+    'native_function_invocation' => true,
+    'native_constant_invocation' => true,
+    'strict_param' => true,
+    'array_syntax' => ['syntax' => 'short'],
+];
+
+$phpCsFixer = PhpCsFixer\Config::create()
+    ->setRules($rules)
+    ->setRiskyAllowed(true)
+    ->setFinder($finder)
+;
+
+return PhpCsFixer\Config::create()
+    ->setRules([
+        '@Symfony' => true,
+    ])
+    ->setFinder($finder)
+;

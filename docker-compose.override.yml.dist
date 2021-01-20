@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  # For linux only and debian like host only
+
+  app:
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+  tools:
+    volumes:
+      - ~/.composer:/var/www/.composer
+      - ~/.cache/yarn:/var/www/.cache/yarn
+      - ~/.yarnrc:/var/www/.yarnrc
+      - ~/.yarn:/var/www/.yarn
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
