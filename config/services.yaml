@@ -6,14 +6,19 @@ services:
         autowire: true
         autoconfigure: true
 
-#    App\:
-#        resource: '../src/'
-#        exclude:
-#            - '../src/DependencyInjection/'
-#            - '../src/Entity/'
-#            - '../src/Kernel.php'
-#            - '../src/Tests/'
+    'doctrine.dbal.default_connection': '@doctrine.dbal.stakeholder_connection'
+    #'doctrine.orm.default_entity_manager': '@doctrine.orm.stakeholder_entity_manager'
 
-#   App\Controller\:
-#        resource: '../src/Controller/'
-#        tags: ['controller.service_arguments']
+    App\Domain\Stakeholder\:
+        resource: '../src/Domain/Stakeholder/'
+        exclude:
+            - '../src/Domain/Stakeholder/Model/'
+            - '../src/Domain/Stakeholder/Command/Message/'
+            - '../src/Domain/Stakeholder/Query/Message/'
+
+    App\Infrastructure\:
+        resource: '../src/Infrastructure/'
+
+    App\Domain\Stakeholder\Api\Endpoint\:
+        resource: '../src/Domain/Stakeholder/Api/Endpoint/'
+        tags: ['controller.service_arguments']

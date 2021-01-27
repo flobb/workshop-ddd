@@ -1,16 +1,51 @@
 doctrine:
     dbal:
-        url: '%env(resolve:DATABASE_URL)%'
-        server_version: '5.7'
+        default_connection: stakeholder
+        connections:
+            booking:
+                url: '%env(resolve:DATABASE_URL_BOOKING)%'
+                driver: 'pdo_mysql'
+                server_version: '5.6'
+                charset: utf8
+            rental:
+                url: '%env(resolve:DATABASE_URL_RENTAL)%'
+                driver: 'pdo_mysql'
+                server_version: '5.6'
+                charset: utf8
+            stakeholder:
+                url: '%env(resolve:DATABASE_URL_STAKEHOLDER)%'
+                driver: 'pdo_mysql'
+                server_version: '5.6'
+                charset: utf8
 
     orm:
-        auto_generate_proxy_classes: true
-        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
-        auto_mapping: true
-        mappings:
-#            App:
-#                is_bundle: false
-#                type: annotation
-#                dir: '%kernel.project_dir%/src/Entity'
-#                prefix: 'App\Entity'
-#                alias: App
+        default_entity_manager: stakeholder
+        entity_managers:
+            booking:
+                connection: booking
+                mappings:
+                    Booking:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Domain/Booking/Model'
+                        prefix: 'App\Domain\Booking\Model'
+                        alias: Booking
+            rental:
+                connection: rental
+                mappings:
+                    Rental:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Domain/Rental/Model'
+                        prefix: 'App\Domain\Rental\Model'
+                        alias: Rental
+            stakeholder:
+                connection: stakeholder
+                mappings:
+                    Customer:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Domain/Stakeholder/Model'
+                        prefix: 'App\Domain\Stakeholder\Model'
+                        alias: Stakeholder
+

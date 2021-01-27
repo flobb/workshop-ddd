@@ -4,11 +4,12 @@ framework:
 
         transports:
             command:
-                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%/command'
                 retry_strategy:
                     max_retries: 3
-            failed: '%env(MESSENGER_TRANSPORT_DSN)%'
+            query: 'sync://'
+            failed: '%env(MESSENGER_TRANSPORT_DSN)%/failed'
 
         routing:
-            # Route your messages to the transports
-            # 'App\Message\YourMessage': async
+            'App\Domain\Stakeholder\Command\Message\RegisterAUser': command
+            'App\Domain\Stakeholder\Query\Message\GetAUserByUserId': query

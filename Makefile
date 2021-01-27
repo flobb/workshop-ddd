@@ -44,3 +44,6 @@ behat: ## Run behat tests
 	$(TOOLS) vendor/bin/behat
 
 test: phpunit behat ## Run all tests
+
+consume:
+	$(TOOLS) bin/console messenger:consume command -vv
