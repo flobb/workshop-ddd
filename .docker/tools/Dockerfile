@@ -1,4 +1,4 @@
-FROM solune/symfony:7.3.4-cli-stretch
+FROM solune/symfony:7.4-cli
 
 ENV NODE_VERSION 12.19.0
 ENV YARN_VERSION 1.22.5
