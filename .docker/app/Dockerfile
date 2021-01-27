@@ -1,4 +1,4 @@
-FROM solune/symfony:7.3.4-apache-stretch
+FROM solune/symfony:7.4-apache
 
 RUN buildDeps=" \
         librabbitmq-dev \
