@@ -1,0 +1,19 @@
+default:
+    suites:
+        default:
+            contexts:
+                - App\Tests\Behat\DemoContext
+                - Behat\MinkExtension\Context\MinkContext
+                - behatch:context:json
+                - behatch:context:rest
+                - behatch:context:debug:
+                    screenshotDir: "var"
+
+    extensions:
+        Behat\MinkExtension:
+                sessions:
+                    default:
+                        symfony: ~
+        FriendsOfBehat\SymfonyExtension:
+            bootstrap: tests/bootstrap.php
+        Behatch\Extension: ~
